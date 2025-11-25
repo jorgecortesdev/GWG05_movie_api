@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -7,18 +6,369 @@
 </head>
 
 <body>
-    <p>
-        It`s
-        become essential that you be able to interface with (as you did in Achievement 1) and even create
-        your own APIs. For this reason, throughout this Achievement, you`ll create a REST API for an
-        application called "myFlix" that interacts with a database that stores data about different movies.
-        In the next Achievement, you`ll build the client-side component of this same application using REACT.
-        By the end of Achievement 3, you`ll have a complete web application (client-side and server-side) built
-        using full-stack JavaScript technologies that you can showcase in your portfolio. The project will
-        demonstrate your mastery of full-stack JavaScript development, including APIs, web server
-        frameworks, databases, business logic, authentication, data security, and more. The complete tech
-        stack you`ll master is known as the MERN (MongoDB, Express, React, and Node.js) stack.
-    </p>
+    <main>
+        <h1>Movie API</h1>
+        <hr>
+        <h2>Description</h2>
+        <p>
+            It`s
+            become essential that you be able to interface with (as you did in Achievement 1) and even create
+            your own APIs. For this reason, throughout this Achievement, you`ll create a REST API for an
+            application called "myFlix" that interacts with a database that stores data about different movies.
+            In the next Achievement, you`ll build the client-side component of this same application using REACT.
+            By the end of Achievement 3, you`ll have a complete web application (client-side and server-side) built
+            using full-stack JavaScript technologies that you can showcase in your portfolio. The project will
+            demonstrate your mastery of full-stack JavaScript development, including APIs, web server
+            frameworks, databases, business logic, authentication, data security, and more. The complete tech
+            stack you`ll master is known as the MERN (MongoDB, Express, React, and Node.js) stack.
+        </p>
+        <h2>Endpoints</h2>
+        <h3>Movies</h3>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Parameters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td>/movies</td>
+                        <td>Retrieves a list of movies.</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>[
+    {
+        "Title": "Jumanji",
+        "Director": {
+        "Name": "Joe Johnston",
+        "Bio": "Joseph Eggleston Johnston II is an American film director, 
+        producer, writer, and visual effects artist.",
+        "Birth": "May 13, 1950"
+        },
+        "Description": "In this series of events Alan Parrish discovers a board game
+        full of Mistery and Chaos that will change his life forever.",
+        "Feature": false,
+        "Genre": {
+        "Name": "Family",
+        "Description": "films intended for a wide age range, from children to adults,
+        focusing on relatable and wholesome themes like love, hope, and adventure."
+      }
+    },
+]</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>/movies/:title</td>
+                        <td>Retrieves information about a specific movie by its title.</td>
+                        <td>
+                            <dl>
+                                <dt>:title</dt>
+                                <dd>The title of the movie</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>{    
+        "Title": "Jumanji",
+        "Director": {
+        "Name": "Joe Johnston",
+        "Bio": "Joseph Eggleston Johnston II is an American film director, 
+        producer, writer, and visual effects artist.",
+        "Birth": "May 13, 1950"
+        },
+        "Description": "In this series of events Alan Parrish discovers a board game 
+        full of Mistery and Chaos that will change his life forever.",
+        "Feature": false,
+        "Genre": {
+        "Name": "Family",
+        "Description": "films intended for a wide age range, from children to adults,
+        focusing on relatable and wholesome themes like love, hope, and adventure."
+      }
+    },</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <h3>Genres</h3>
+        <section>
+            <table class="endpoints">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Parameters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td>/genres/:name</td>
+                        <td>Retrieves information about a specific genre by its name.</td>
+                        <td>
+                            <dl>
+                                <dt>:name</dt>
+                                <dd>The name of the genre</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>{
+    "Name": "Action",
+    "Description": "Movies intended to provide an exciting experience, usually..."
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <h3>Directors</h3>
+        <section>
+            <table class="endpoints">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Parameters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td>/directors/:name</td>
+                        <td>Retrieves information about a specific director by their name.</td>
+                        <td>
+                            <dl>
+                                <dt>:name</dt>
+                                <dd>The name of the director</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>{
+    "Name": "Christopher Nolan",
+    "Bio": "Christopher Nolan is a British-American film director, producer, and...",
+    "Birth": "July 30, 1970"
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <h3>Users</h3>
+        <section>
+            <table class="endpoints">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Parameters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>POST</td>
+                        <td>/users</td>
+                        <td>Creates a new user.</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Body of the<br>Request</th>
+                                        <td>
+                                            <pre><code>{
+    "name": "Jorge",
+    "favoriteMovies": []
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>{
+    "name": "Jorge",
+    "favoriteMovies": [],
+    "id": "09896e6e-e7a1-4202-95bc-6fcf78957231"
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PUT</td>
+                        <td>/users/:id</td>
+                        <td>Updates an existing user.</td>
+                        <td>
+                            <dl>
+                                <dt>:id</dt>
+                                <dd>The id of the user</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Body of the<br>Request</th>
+                                        <td>
+                                            <pre><code>{
+    "name": "Jorge (update)"
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>{
+    "id": "09896e6e-e7a1-4202-95bc-6fcf78957231",
+    "name": "Jorge (update)",
+    "favoriteMovies": []
+}</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>POST</td>
+                        <td>/users/:id/movies/:title</td>
+                        <td>Adds a movie to a user's favorite movies list.</td>
+                        <td>
+                            <dl>
+                                <dt>:id</dt>
+                                <dd>The id of the user</dd>
+                                <dt>:title</dt>
+                                <dd>The title of the movie</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>Jumanji has been added to user 09896e6e-e7a1-4202-95bc-6fcf78957231's array</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/users/:id/movies/:title</td>
+                        <td>Removes a movie from a user's favorite movies list.</td>
+                        <td>
+                            <dl>
+                                <dt>:id</dt>
+                                <dd>The id of the user</dd>
+                                <dt>:title</dt>
+                                <dd>The title of the movie</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>Jumanji has been removed from user 09896e6e-e7a1-4202-95bc-6fcf78957231's array</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/users/:id</td>
+                        <td>Deletes a user from the system.</td>
+                        <td>
+                            <dl>
+                                <dt>:id</dt>
+                                <dd>The id of the user</dd>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="api-examples">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Response</th>
+                                        <td>
+                                            <pre><code>User 09896e6e-e7a1-4202-95bc-6fcf78957231</code></pre>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 
 </html>
