@@ -91,7 +91,7 @@ app.post('/users', (req, res) => {
 })
 
 //CREATE/POST requests
-app.post('/users/:id/:movieTitle', (req, res) => {
+app.post('/users/:id/movies/:movieTitle', (req, res) => {
     const { id, movieTitle } = req.params;
 
     let user = users.find( user => user.id == id);
@@ -105,7 +105,7 @@ app.post('/users/:id/:movieTitle', (req, res) => {
 })
 
 //DELETE favoriteMovies from array
-app.delete('/users/:id/:movieTitle', (req, res) => {
+app.delete('/users/:id/movies/:movieTitle', (req, res) => {
     const { id, movieTitle } = req.params;
 
     let user = users.find( user => user.id == id);
