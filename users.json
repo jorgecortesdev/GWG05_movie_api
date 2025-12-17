@@ -1,0 +1,4 @@
+{"_id":{"$oid":"6938a84d0098697b611e2621"},"Email":"john.doe@example.com","Name":"John Doe","Password":"password123","Birthday":"new Date('1990-04-15')","FavoriteMovies":[{"$oid":"69377907d35e34fd771e2623"}],"ToWatch":[]}
+{"_id":{"$oid":"6938ac080098697b611e2622"},"Email":"jane.smith@example.com","Name":"Jane Smith","Password":"secret456","Birthday":{"$date":"1985-09-30T00:00:00Z"},"FavoriteMovies":[],"ToWatch":[]}
+{"_id":{"$oid":"6938ae3c0098697b611e2623"},"Email":"bob.johnson@example.com","Name":"Bob Johnson","Password":"secure789","Birthday":{"$date":"1995-12-05T00:00:00Z"},"FavoriteMovies":[],"ToWatch":[]}
+{"_id":{"$oid":"6938b61b0098697b611e2624"},"Email":"alice.williams@example.com","Name":"Alice Williams","Password":"p@ssw0rd!","Birthday":{"$date":{"$numberLong":"-190166400000"}},"FavoriteMovies":[],"ToWatch":[]}
