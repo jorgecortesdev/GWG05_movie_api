@@ -14,13 +14,18 @@ const Users = Models.User;
 
 mongoose.connect("mongodb://127.0.0.1:27017/myflixDB");
 
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 /**
  * Retrieves a list of movies.
  *
  * @route GET /movies
  * @returns {object[]} List of movies
  */
-app.get("/movies", async (req, res) => {
+app.get("/movies", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const movies = await Movies.find();
     return res.status(200).json(movies);
@@ -37,7 +42,7 @@ app.get("/movies", async (req, res) => {
  * @param {string} req.params.title - The title of the movie to retrieve
  * @returns {object} Information about the movie
  */
-app.get("/movies/:title", async (req, res) => {
+app.get("/movies/:title", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const { title } = req.params;
     const movie = await Movies.findOne({ Title: title });
@@ -61,7 +66,7 @@ app.get("/movies/:title", async (req, res) => {
  * @param {string} req.params.genreName - The name of the genre to retrieve
  * @returns {object} Information about the genre
  */
-app.get("/movies/genre/:genreName", async (req, res) => {
+app.get("/movies/genre/:genreName", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const { genreName } = req.params;
     const movie = await Movies.findOne({ "Genre.Name": genreName });
@@ -85,7 +90,7 @@ app.get("/movies/genre/:genreName", async (req, res) => {
  * @param {string} req.params.directorName - The name of the director to retrieve.
  * @returns {Object} Information about the director.
  */
-app.get("/movies/directors/:directorName", async (req, res) => {
+app.get("/movies/directors/:directorName", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const { directorName } = req.params;
     const movie = await Movies.findOne({ "Director.Name": directorName });
@@ -108,7 +113,7 @@ app.get("/movies/directors/:directorName", async (req, res) => {
  * @route GET /users
  * @returns {object[]} List of users
  */
-app.get("/users", async (req, res) => {
+app.get("/users", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const users = await Users.find().select("-Password");
     return res.status(200).json(users);
@@ -125,7 +130,7 @@ app.get("/users", async (req, res) => {
  * @param {string} req.params.Username - The username of the user to retrieve.
  * @returns {Object} Information about the user.
  */
-app.get("/users/:Username", async (req, res) => {
+app.get("/users/:Username", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const { Username } = req.params;
     const user = await Users.findOne({ Username: Username }).select(
@@ -195,7 +200,7 @@ app.post("/users", async (req, res) => {
  * @param {Object} req.body - The updated data for the user.
  * @returns {Object} The updated user.
  */
-app.put("/users/:Username", async (req, res) => {
+app.put("/users/:Username", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const filter = { Username: req.params.Username };
     const options = { new: true };
@@ -248,7 +253,7 @@ app.put("/users/:Username", async (req, res) => {
  * @param {string} req.params.movieId - The id of the movie to be added.
  * @returns {Object} The updated user.
  */
-app.post("/users/:Username/movies/:movieId", async (req, res) => {
+app.post("/users/:Username/movies/:movieId", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const filter = { Username: req.params.Username };
     const options = { new: true };
@@ -277,7 +282,7 @@ app.post("/users/:Username/movies/:movieId", async (req, res) => {
  * @param {string} req.params.movieId - The id of the movie to be removed.
  * @returns {Object} The updated user.
  */
-app.delete("/users/:Username/movies/:movieId", async (req, res) => {
+app.delete("/users/:Username/movies/:movieId", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const filter = { Username: req.params.Username };
     const options = { new: true };
@@ -306,7 +311,7 @@ app.delete("/users/:Username/movies/:movieId", async (req, res) => {
  * @param {string} req.params.Username - The unique identifier of the user to be deleted.
  * @returns {string} Success message indicating the user has been deleted.
  */
-app.delete("/users/:Username", async (req, res) => {
+app.delete("/users/:Username", passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const { Username } = req.params;
 
